@@ -1,11 +1,10 @@
 package hello;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.UUID;
 
 public interface T1Repository extends PagingAndSortingRepository<T1, Long> {
-  @Query(value = "select x.id from hello.T1 x where x.a = ?1")
-  UUID getT1IdByABC(UUID a);
+  T1 findBySomeField(@Param("someField") UUID someField);
 }
