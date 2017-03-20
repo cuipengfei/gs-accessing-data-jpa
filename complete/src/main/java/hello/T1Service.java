@@ -23,7 +23,7 @@ public class T1Service {
 
   @Transactional
   public void insertMany() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 1000; i++) {
       log.info("!!! " + (i + 1) + "th item start");
 
       UUID a = UUID.randomUUID();
