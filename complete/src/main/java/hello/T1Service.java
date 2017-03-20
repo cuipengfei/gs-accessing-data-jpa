@@ -66,7 +66,8 @@ public class T1Service {
 
     T2 t2 = new T2(savedT1);
     t2.setDate(ZonedDateTime.now());
-    //remove the line above, find t1 will be faster and there won't be update statements
+    //remove the line above, then there won't be update statements
+    //and find t1 will be much faster
 
     savedT1.getT2s().add(t2);
 
