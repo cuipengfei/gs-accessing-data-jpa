@@ -1,6 +1,5 @@
 package hello;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,6 @@ public class T1ServiceTest {
 
   @Test
   public void testSpeed() throws Exception {
-    t1Service.createManyT1s();
+    t1Service.insertMany();
   }
 }

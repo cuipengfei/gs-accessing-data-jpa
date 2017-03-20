@@ -22,15 +22,15 @@ public class T1Service {
   T2Repository t2Repository;
 
   @Transactional
-  public void createManyT1s() {
-    for (int i = 0; i < 1000; i++) {
+  public void insertMany() {
+    for (int i = 0; i < 10; i++) {
+      log.info("!!! " + (i + 1) + "th item start");
+
       UUID a = UUID.randomUUID();
-      UUID b = UUID.randomUUID();
-      UUID c = UUID.randomUUID();
 
-      T1 t1 = new T1(a, b, c);
+      T1 t1 = new T1(a);
 
-      UUID t1Id = tryToFindExistingT1(a, b, c);
+      UUID t1Id = tryToFindExistingT1(a);
 
       if (t1Id == null) {
         log.info("t1 not found");
@@ -38,14 +38,19 @@ public class T1Service {
         T1 savedT1 = saveT1(t1);
         saveT2(savedT1);
       }
+
+      log.info("!!! " + (i + 1) + "th item finished");
+      log.info("====================================");
     }
 
   }
 
-  private UUID tryToFindExistingT1(UUID a, UUID b, UUID c) {
+  private UUID tryToFindExistingT1(UUID a) {
     long start = currentTimeMillis();
-    UUID t1Id = t1Repository.getT1IdByABC(a, b, c);
-    log.info("try to find t1: " + (currentTimeMillis() - start));
+    log.info("start find");
+    UUID t1Id = t1Repository.getT1IdByABC(a);
+    //the line above will become very very very slow, but if you remove date on t2, it'll be faster
+    log.info("find finished: " + (currentTimeMillis() - start));
     return t1Id;
   }
 
