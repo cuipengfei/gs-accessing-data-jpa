@@ -5,6 +5,7 @@ import static org.hibernate.annotations.LazyCollectionOption.FALSE;
 
 import org.hibernate.annotations.LazyCollection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +27,15 @@ public class T1 extends BaseEntity {
 
   @LazyCollection(FALSE)
   @OneToMany(cascade = ALL, mappedBy = "t1")
-  private List<T2> lineItems;
+  private List<T2> t2s = new ArrayList<>();
 
+  public T1(UUID a, UUID b, UUID c) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+
+  public List<T2> getT2s() {
+    return t2s;
+  }
 }

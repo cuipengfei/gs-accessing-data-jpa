@@ -1,6 +1,6 @@
 package hello;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface T2Repository extends CrudRepository<T2, Long> {
+public interface T2Repository extends PagingAndSortingRepository<T2, Long> {
 }
