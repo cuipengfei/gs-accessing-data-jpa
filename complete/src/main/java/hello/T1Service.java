@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
@@ -28,7 +29,11 @@ public class T1Service {
 
       if (foundT1 == null) {
         log.info("t1 not found");
-        T1 t1 = new T1(randomUUID, now());
+        ZonedDateTime date = now();
+        //date = null;
+        //if you enable the line above, there won't be any update statements anymore
+        //and find will also become faster
+        T1 t1 = new T1(randomUUID, date);
         saveT1(t1);
       }
 
@@ -41,6 +46,8 @@ public class T1Service {
     long start = currentTimeMillis();
     T1 t1Id = t1Repository.findBySomeField(someField);
     //as nth item increases, the line above will become very very slow
+    //and also, there will be more and more update statements
+    //but if you set date of t1 to null, update statement will disappear and it'll not be slow
     log.info("find took: " + (currentTimeMillis() - start) + " milliseconds");
     return t1Id;
   }

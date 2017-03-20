@@ -21,10 +21,6 @@ public abstract class BaseEntity {
   @Type(type = PG_UUID)
   protected UUID id;
 
-  public void setId(UUID id) {
-    this.id = id;
-  }
-
   public BaseEntity() {
   }
 }
